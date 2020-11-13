@@ -93,13 +93,13 @@ Widget _itemOne() {
       ),
     ),
   child: Row(
-    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    mainAxisAlignment: MainAxisAlignment.start,
     children: [
       Checkbox(
         value: false,
         onChanged: (val) {}
       ),
-      Text('Write a book', style: TextStyle(fontSize: 26)),
+      Expanded(child: Text('Write a book', style: TextStyle(fontSize: 26))),
       Icon(Icons.close),
     ],
   ),
@@ -121,7 +121,7 @@ Widget _itemTwo() {
         value: false,
         onChanged: (val) {}
       ),
-      Text('Do homework', style: TextStyle(fontSize: 26)),
+      Expanded(child: Text('Do homework', style: TextStyle(fontSize: 26))),
       Icon(Icons.close),
     ],
   ),
@@ -144,10 +144,11 @@ Widget _itemThree() {
         activeColor: (Colors.grey),
         onChanged: (val) {}
       ),
-      Text('Tidy room', style: TextStyle(
-        fontSize: 26, 
-        decoration: TextDecoration.lineThrough),
-        ),
+      Expanded(child: Text('Tidy room', style: TextStyle(
+          fontSize: 26, 
+          decoration: TextDecoration.lineThrough),
+          ),
+      ),
       Icon(Icons.close),
     ],
   ),
@@ -169,7 +170,7 @@ Widget _itemFour() {
         value: false,
         onChanged: (val) {}
       ),
-      Text('Watch TV', style: TextStyle(fontSize: 26)),
+      Expanded(child: Text('Watch TV', style: TextStyle(fontSize: 26))),
       Icon(Icons.close),
     ],
   ),
@@ -191,7 +192,7 @@ Widget _itemFive() {
         value: false,
         onChanged: (val) {}
       ),
-      Text('Nap', style: TextStyle(fontSize: 26)),
+      Expanded(child: Text('Nap', style: TextStyle(fontSize: 26))),
       Icon(Icons.close),
     ],
   ),
@@ -213,7 +214,7 @@ Widget _itemSix() {
         value: false,
         onChanged: (val) {}
       ),
-      Text('Shop groceries', style: TextStyle(fontSize: 26)),
+      Expanded(child: Text('Shop groceries', style: TextStyle(fontSize: 26))),
       Icon(Icons.close),
     ],
   ),
@@ -235,7 +236,7 @@ Widget _itemSeven() {
         value: false,
         onChanged: (val) {}
       ),
-      Text('Have fun', style: TextStyle(fontSize: 26)),
+      Expanded(child: Text('Have fun', style: TextStyle(fontSize: 26))),
       Icon(Icons.close),
     ],
   ),
@@ -257,7 +258,7 @@ Widget _itemEight() {
         value: false,
         onChanged: (val) {}
       ),
-      Text('Meditate', style: TextStyle(fontSize: 26)),
+      Expanded(child: Text('Meditate', style: TextStyle(fontSize: 26))),
       Icon(Icons.close),
     ],
   ),
