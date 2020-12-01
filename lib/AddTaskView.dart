@@ -62,11 +62,15 @@ Widget build(BuildContext context) {
   );
 }
 
-Widget _textField() {
-  return Container(
-    margin: EdgeInsets.only(left: 30, right: 30, top: 30),
-    height: 50,
-    child: TextField(
+ Widget _textField() {
+    return Container(
+      margin: EdgeInsets.only(left: 16, right: 16, top: 16),
+      width: 500.0,
+      child: TextField(
+        style: TextStyle(
+          fontSize: 21.0,
+        ),
+        controller: textEditingController,
         decoration: InputDecoration(
             focusedBorder: OutlineInputBorder(
                 borderSide: BorderSide(color: Colors.black, width: 2.0),
@@ -75,10 +79,8 @@ Widget _textField() {
                 borderSide: BorderSide(color: Colors.black, width: 2.0),
             ),
             contentPadding: EdgeInsets.all(15.0),
-            hintText: 'What are you going to do?',
-        ),
+            hintText: 'What are you going to do?'),
       ),
     );
   }
 }
-

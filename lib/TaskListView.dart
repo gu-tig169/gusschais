@@ -76,12 +76,13 @@ class TaskList extends StatelessWidget {
 }
 
 // Widget som definierar hur task row ska se ut i vyn, även möjliga förändringar i status
+// Något här eller i TaskList är galet då jag ej kan lägga till nya tasks utan felmeddelande 
 Widget taskWidget(context, task) {
     return Card(
       child: CheckboxListTile(
         controlAffinity: ListTileControlAffinity.leading,
         title: Expanded(
-                  child: Text(task.input != null ? task.input : 'Default value',
+                  child: Text(task.input,
                   style: TextStyle(
                   fontSize: 26.0,
                   decoration: task.status == false
@@ -104,6 +105,5 @@ Widget taskWidget(context, task) {
       ),
     );
   }
-
 
 
