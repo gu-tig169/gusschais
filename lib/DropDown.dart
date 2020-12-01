@@ -1,3 +1,5 @@
+// Drop-down klass & filter klass för filtrering
+
 class DropDown {
   static const String all = 'all';
   static const String done = 'done';

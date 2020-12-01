@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
-import './model.dart';
-import './AddTaskView.dart';
-import './DropDown.dart';
+import 'model.dart';
+import 'AddTaskView.dart';
+import 'DropDown.dart';
 
 // Detta är huvudvyn som appen startar i.
-
 class TaskListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -50,7 +48,7 @@ class TaskListView extends StatelessWidget {
       ),
     );
 }
-// Drop-down meny i huvudvyn
+
 void choiceAction(String choice) {
     if (choice == DropDown.all) {
       Filter.show = "all";
@@ -73,23 +71,20 @@ class TaskList extends StatelessWidget {
         children:
             listFiltered.map((task) => taskWidget(context, task)).toList());
   }
-}
 
 // Widget som definierar hur task row ska se ut i vyn, även möjliga förändringar i status
-// Något här eller i TaskList är galet då jag ej kan lägga till nya tasks utan felmeddelande 
 Widget taskWidget(context, task) {
     return Card(
       child: CheckboxListTile(
         controlAffinity: ListTileControlAffinity.leading,
-        title: Expanded(
-                  child: Text(task.input,
-                  style: TextStyle(
-                  fontSize: 26.0,
-                  decoration: task.status == false
-                      ? TextDecoration.none
-                      : TextDecoration.lineThrough,
-                  decorationThickness: 3.0)),
-        ),
+        title: Text(task.input,
+        textAlign: TextAlign.justify,
+        style: TextStyle(
+          fontSize: 26.0,
+          decoration: task.status == false
+            ? TextDecoration.none
+            : TextDecoration.lineThrough,
+        decorationThickness: 2.0)),
         value: task.status,
         onChanged: (bool newValue) {
           var state = Provider.of<MyState>(context, listen: false);
@@ -105,5 +100,5 @@ Widget taskWidget(context, task) {
       ),
     );
   }
-
+}
 

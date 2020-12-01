@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import './DropDown.dart';
+import 'DropDown.dart';
 
 // Definierar vad varje task består av, en string som kallas input och en status  
 class TaskItem {
   String input;
   bool status = false;
+  
   TaskItem({this.input, this.status});
   }
 
@@ -44,16 +45,16 @@ void filterChange(String choice) {
 // Tillhör filtrerings-dropdown 
 List<TaskItem> filteredList(String choice) {
   _filteredList.clear();
-  if (choice == 'Complete') {
+  if (choice == 'done') {
     _filteredList = list.where((task) => task.status == true).toList();
     return _filteredList;
   }
-  else if (choice == 'Incomplete') {
+  else if (choice == 'undone') {
     print('Incomplete');
     _filteredList = list.where((task) => task.status == false).toList();
     return _filteredList;
   }
-  else if (choice == 'All') {
+  else if (choice == 'all') {
     print('All');
     _filteredList = list.where((task) => task.input == task.input).toList();
     return _filteredList;

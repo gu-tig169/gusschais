@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import './model.dart';
+import 'model.dart';
 
 class AddTaskView extends StatefulWidget {
   final TaskItem task;
@@ -52,7 +52,7 @@ Widget build(BuildContext context) {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Container(height: 5),
+          Container(height: 10),
           _textField(),
           Container(height: 50),
           outLinedButton,
@@ -68,7 +68,7 @@ Widget build(BuildContext context) {
       width: 500.0,
       child: TextField(
         style: TextStyle(
-          fontSize: 21.0,
+          fontSize: 26.0,
         ),
         controller: textEditingController,
         decoration: InputDecoration(
