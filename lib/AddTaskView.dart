@@ -32,13 +32,13 @@ class AddTaskState extends State<AddTaskView> {
 
 @override
 Widget build(BuildContext context) {
-  var outLinedButton = OutlinedButton(
+  var textButton = TextButton(
     onPressed: () {
       Navigator.pop(context, TaskItem(input: input, status: status));
     }, 
     child: Text(
       '+ ADD', 
-      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
+      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0, color: Colors.black),
     ),
   );
   return Scaffold(
@@ -52,10 +52,10 @@ Widget build(BuildContext context) {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Container(height: 10),
+          Container(height: 15),
           _textField(),
-          Container(height: 50),
-          outLinedButton,
+          Container(height: 30),
+          textButton,
         ],
       ),
     ),
@@ -64,11 +64,11 @@ Widget build(BuildContext context) {
 
  Widget _textField() {
     return Container(
-      margin: EdgeInsets.only(left: 16, right: 16, top: 16),
+      margin: EdgeInsets.only(left: 18, right: 18, top: 16),
       width: 500.0,
       child: TextField(
         style: TextStyle(
-          fontSize: 26.0,
+          fontSize: 21.0,
         ),
         controller: textEditingController,
         decoration: InputDecoration(
