@@ -1,67 +1,84 @@
 import 'package:flutter/material.dart';
 import 'DropDown.dart';
+import './api.dart';
 
 // Definierar vad varje task består av, en string som kallas input och en status  
 class TaskItem {
   String input;
+  String taskId;
   bool status = false;
   
-  TaskItem({this.input, this.status});
+  TaskItem({this.input, this.taskId, this.status});
+
+  static Map<String, dynamic> toJson(TaskItem task) {
+    return {
+      'title': task.input,
+      'done': task.status,
+    };
   }
 
+  static TaskItem fromJson(Map<String, dynamic> json) {
+    return TaskItem(
+      input: json['title'],
+      taskId: json['id'],
+      status: json['done'],
+      );
+    }
+ }
+
 class MyState extends ChangeNotifier {
-  List<TaskItem> _list = [];
-  List<TaskItem> get list => _list;
-  List<TaskItem> _filteredList = [];
-  List<TaskItem> get listFiltered => _filteredList;
+  List<TaskItem> _listFetched = [];
+  List<TaskItem> get listFetched => _listFetched;
 
-// Nedan funktion tillåter tasks att läggas in i listorna
-void addTask(TaskItem task) {
-  _list.add(task);
-  _filteredList = list.where((task) => task.input == task.input).toList();
-  notifyListeners();
-}
+  Future getList() async {
+    List<TaskItem> list = await Api.fetchList();
+    _listFetched = list;
+    notifyListeners();
+  }
 
-// Nedan funktion tillåter tasks att tas bort från listorna
-void removeTask(TaskItem task) {
-  _list.remove(task);
-  _filteredList.remove(task);
-  notifyListeners();
-}
+// Nedan funktion tillåter tasks att läggas in i nätverket
+void addTask(TaskItem task) async {
+  if (task.input == null) {
+    await getList();
+  }
+  else {
+    await Api.addTaskApi(task);
+    await getList();
+    }
+  }
 
-// Nedan funktion tillåter förändring av task status
-void toggleTask(TaskItem task, bool newValue) {
+// Nedan funktion tillåter tasks att tas bort från nätverket
+void removeTask(TaskItem task) async {
+  await Api.removeTaskApi(task.taskId);
+  await getList();
+  }
+  
+// Nedan funktion tillåter förändring av task i nätverket
+void toggleTask(TaskItem task, bool newValue) async {
   task.status = newValue;
-  notifyListeners();
+  await Api.updateTaskApi(task);
+  await getList();
 }
 
 // Nedan funktion tillåter filtrering av tasks i listor
-void filterChange(String choice) {
+void filterChange(String choice) async {
   Filter.show = choice;
+  await Api.fetchList();
+  await getList();
   filteredList(choice);
   notifyListeners();
   }
 
 // Tillhör filtrerings-dropdown 
-List<TaskItem> filteredList(String choice) {
-  _filteredList.clear();
-  if (choice == 'done') {
-    _filteredList = list.where((task) => task.status == true).toList();
-    return _filteredList;
+void filteredList(String choice) {
+  if (choice == "all") {
+    _listFetched = listFetched.toList();
+    } else if (choice == "undone") {
+    _listFetched = listFetched.where((task) => task.status == false).toList();
+    } else if (choice == "done") {
+    _listFetched = listFetched.where((task) => task.status == true).toList();
+    }
   }
-  else if (choice == 'undone') {
-    print('Incomplete');
-    _filteredList = list.where((task) => task.status == false).toList();
-    return _filteredList;
-  }
-  else if (choice == 'all') {
-    print('All');
-    _filteredList = list.where((task) => task.input == task.input).toList();
-    return _filteredList;
-  }
-  return _filteredList;
- 
-   }
- }
+}
 
 

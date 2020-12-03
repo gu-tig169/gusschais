@@ -30,7 +30,7 @@ class TaskListView extends StatelessWidget {
         ],
       ),
       body: Consumer<MyState>(
-        builder: (context, state, child) => TaskList(state.listFiltered),
+        builder: (context, state, child) => TaskList(state.listFetched),
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
