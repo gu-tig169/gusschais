@@ -84,7 +84,7 @@ Widget taskWidget(context, task) {
           decoration: task.status == false
             ? TextDecoration.none
             : TextDecoration.lineThrough,
-        decorationThickness: 2.0)),
+        decorationThickness: 1.0)),
         value: task.status,
         onChanged: (bool newValue) {
           var state = Provider.of<MyState>(context, listen: false);
